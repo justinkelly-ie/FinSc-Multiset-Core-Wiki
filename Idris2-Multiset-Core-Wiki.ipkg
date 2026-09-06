@@ -1,0 +1,21 @@
+package Idris2-Multiset-Core-Wiki
+version = 0.1.0
+authors = "Justin Kelly"
+brief   = "Verification executable for Layer 0 Ground Linear QTT Multiset Memory Kernel."
+opts    = "--codegen chez"
+
+depends = base, linear, idris2-QuickCheck, Idris2-Multiset-Core
+
+modules = Generators
+        , ScaleTransformSpec
+        , MultisetAlgebraSpec
+        , BoxIntAlgebraSpec
+        , BitGateChannelSpec
+        , LinearResourceChannelSpec
+        , DependentMultisetSpec
+        , Main
+
+main    = Main
+executable = multiset0-verify
+
+sourcedir = "Library/Wiki"
