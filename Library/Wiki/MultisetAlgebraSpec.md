@@ -67,6 +67,14 @@ prop_subMultisetEquivalence v1 v2 =
       diff = subMultiset m1 m2
   in diff == AddM "a" (v1 - v2) ZeroM
 
+||| Property 8: Additive Inverse Annihilation (m + (-m) == 0)
+public export
+prop_addAnnihilation : Integer -> Bool
+prop_addAnnihilation val =
+  let m = AddM "a" val ZeroM
+      sum = addMultiset m (negateMultiset m)
+  in annihilateMultiset sum == ZeroM
+
 ||| QuickCheck suite execution for Multiset Algebra specification
 public export
 auditMultisetAlgebraProof : IO Bool
@@ -78,6 +86,8 @@ auditMultisetAlgebraProof = do
   let r4 = qc prop_annihilateZeroNormalization
   let r5 = qc2 prop_multiplicityObservable
   let r7 = qc2 prop_subMultisetEquivalence
+  let r8 = qc prop_addAnnihilation
   pure (r0.pass == Just True && r1.pass == Just True && r2.pass == Just True && r3.pass == Just True &&
-        r4.pass == Just True && r5.pass == Just True && r7.pass == Just True)
+        r4.pass == Just True && r5.pass == Just True && r7.pass == Just True && r8.pass == Just True)
+```
 ```
