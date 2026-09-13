@@ -17,6 +17,6 @@ modules = Generators
         , Main
 
 main    = Main
-executable = multiset0-verify
+executable = multiset-core-wiki
 
 sourcedir = "Library/Wiki"

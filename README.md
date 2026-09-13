@@ -46,7 +46,7 @@ To compile the literate verification suite and execute the test runner binary:
 
 ```bash
 idris2 --build Idris2-Multiset-Core-Wiki.ipkg
-./build/exec/multiset0-verify
+./build/exec/multiset-core-wiki
 ```
 
 ---
