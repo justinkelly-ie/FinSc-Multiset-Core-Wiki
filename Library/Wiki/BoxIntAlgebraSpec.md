@@ -1,6 +1,15 @@
-# 📦 BoxInt Algebra & Type-Refinement Specification
+# 📦 BoxInt Ring Algebra & Homomorphism Specification
 
-Documents and verifies discrete `BoxInt` **Ring Homomorphisms** under Sandy Maguire's Homomorphic Observation framework using QuickCheck property testing.
+Documents and verifies discrete `BoxInt` **Ring Homomorphisms** $\phi : (\text{BoxInt}, +, \cdot) \to (\mathbb{Z}, +, \cdot)$ under Sandy Maguire's Homomorphic Observation framework, monomorphic integer 2D matrix algebra (`multBoxMatrix2D`, `traceBoxMatrix2D`), and Dirac zero-cancellation using QuickCheck property testing.
+
+## 1. Mathematical Foundation & Ring Homomorphisms
+
+`BoxInt` forms a discrete commutative ring $(\text{BoxInt}, +, \cdot, 0, 1)$ isomorphic to $\mathbb{Z}$. The canonical observation function `boxToInt : BoxInt -> Integer` satisfies the fundamental ring homomorphism axioms:
+
+1. **Additive Homomorphism**: $\text{boxToInt}(a + b) = \text{boxToInt}(a) + \text{boxToInt}(b)$
+2. **Multiplicative Homomorphism**: $\text{boxToInt}(a \cdot b) = \text{boxToInt}(a) \cdot \text{boxToInt}(b)$
+3. **Additive Inverse Homomorphism**: $\text{boxToInt}(-a) = -\text{boxToInt}(a)$
+4. **Monomorphic 2D Matrix Trace Homomorphism**: $\text{traceBoxMatrix2D}(A + B) = \text{traceBoxMatrix2D}(A) + \text{traceBoxMatrix2D}(B)$
 
 ```idris
 module BoxIntAlgebraSpec

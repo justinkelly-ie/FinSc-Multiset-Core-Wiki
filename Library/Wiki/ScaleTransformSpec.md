@@ -1,6 +1,15 @@
-# 📐 ScaleTransform Functorial Specification
+# 📐 ScaleTransform Functorial & Category Homomorphism Specification
 
-Documents and verifies the open `ScaleTransform` typeclass identity and functorial composition laws using QuickCheck property testing.
+Documents and verifies the `ScaleTransform` functorial identity, additive monoid homomorphism axioms, and category-level scale composition laws ($\mathbf{T}_{total} = \mathbf{T}_2 \circ \mathbf{T}_1$) using QuickCheck property testing.
+
+## 1. Mathematical Foundation & Category Homomorphisms
+
+A scale transformation $\mathbf{T} : M(A) \to M(B)$ preserves the multiset structure via functorial homomorphisms:
+
+1. **Additive Homomorphism**: $\mathbf{T}(m_1 + m_2) = \mathbf{T}(m_1) + \mathbf{T}(m_2)$
+2. **Scalar Linearity**: $\mathbf{T}(s \cdot m) = s \cdot \mathbf{T}(m)$
+3. **Functorial Composition Law**: $(\mathbf{T}_2 \circ \mathbf{T}_1)(m) = \mathbf{T}_2(\mathbf{T}_1(m))$
+4. **Galois Adjunction Duality**: $\mathbf{T}^{-1}(\mathbf{T}(m)) = m$
 
 ```idris
 module ScaleTransformSpec
@@ -72,5 +81,4 @@ auditScaleTransformProof = do
   let r7 = qc prop_invertibleScaleTransformGaloisInversion
   pure (r1.pass == Just True && r2.pass == Just True && r3.pass == Just True &&
         r4.pass == Just True && r5.pass == Just True && r6.pass == Just True && r7.pass == Just True)
-
 ```

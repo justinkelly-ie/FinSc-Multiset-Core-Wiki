@@ -1,6 +1,15 @@
-# 🗂️ Multiset Monoid Algebra & Observable Specification
+# 🗂️ Multiset Monoid Algebra & Homomorphism Specification
 
-Documents and verifies zero-annihilation normalization, `multiplicityAll` observables, and **Commutative Monoid Homomorphisms** using QuickCheck property testing.
+Documents and verifies discrete multiset **Commutative Monoid Homomorphisms** $(M(T), +, 0)$, zero-annihilation normalization (`annihilateMultiset`), and linear observable metric counts (`multiplicityAll`) using QuickCheck property testing.
+
+## 1. Mathematical Foundation & Monoid Homomorphisms
+
+A multiset `Box tok` over token domain `tok` forms a free commutative monoid $(M(\text{tok}), +, 0)$ under multiset addition (`addMultiset`). The total multiplicity observable `multiplicityAll : Box tok -> Integer` satisfies the linear monoid homomorphism axioms:
+
+1. **Additive Homomorphism**: $\text{multiplicityAll}(m_1 + m_2) = \text{multiplicityAll}(m_1) + \text{multiplicityAll}(m_2)$
+2. **Scalar Scaling Homomorphism**: $\text{multiplicityAll}(s \cdot m) = |s| \cdot \text{multiplicityAll}(m)$
+3. **Additive Inverse Annihilation**: $\text{annihilateMultiset}(m + (-m)) = 0$
+4. **Commutativity & Associativity**: $m_1 + m_2 = m_2 + m_1$ and $(m_1 + m_2) + m_3 = m_1 + (m_2 + m_3)$
 
 ```idris
 module MultisetAlgebraSpec
@@ -89,5 +98,4 @@ auditMultisetAlgebraProof = do
   let r8 = qc prop_addAnnihilation
   pure (r0.pass == Just True && r1.pass == Just True && r2.pass == Just True && r3.pass == Just True &&
         r4.pass == Just True && r5.pass == Just True && r7.pass == Just True && r8.pass == Just True)
-```
 ```
