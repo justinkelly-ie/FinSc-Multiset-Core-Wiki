@@ -7,6 +7,7 @@ opts    = "--codegen chez"
 depends = base, linear, idris2-QuickCheck, Idris2-Multiset-Core
 
 modules = Generators
+        , CoreMacroAudit
         , ScaleTransformSpec
         , MultisetAlgebraSpec
         , BoxIntAlgebraSpec

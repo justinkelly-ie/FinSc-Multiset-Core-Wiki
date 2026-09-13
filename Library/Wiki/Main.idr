@@ -4,6 +4,7 @@ import Math.Interfaces
 import Math.Multiset
 import Math.BoxInt
 import Math.Singleton.Bit
+import CoreMacroAudit
 import ScaleTransformSpec
 import MultisetAlgebraSpec
 import BoxIntAlgebraSpec
@@ -48,6 +49,7 @@ main = do
   printTestResult "BoxInt Dirac Cancellation (5 + -5 == 0)" auditDiracCancellation
   printTestResult "Bit Algebra Complement (¬0 = 1, ¬1 = 0)" auditBitComplement
   printTestResult "QTT Linear Nat Duplication & Consumption" auditLinearNat
+  printTestResult "Core %macro Reflection Proof Catalog [Compile-Time]" (allTrue CoreMacroAudit.coreMacroWitnesses)
 
   putStrLn "--------------------------------------------------------"
   putStrLn "  ⚡ IDRIS2-QUICKCHECK GENERATIVE PROPERTY SUITES ⚡  "
