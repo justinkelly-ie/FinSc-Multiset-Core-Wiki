@@ -1,5 +1,6 @@
-module CoreMacroAudit
+module Wiki.CoreMacroAudit
 
+import Core.BoxInt
 import Math.BoxInt
 import Math.Multiset
 import Language.Reflection
@@ -24,9 +25,9 @@ auditCatalogWitnesses targets = auditWitness (allTrue targets)
 public export
 auditBoxIntDiracProof : Bool
 auditBoxIntDiracProof =
-  let b1 = intToBoxInt 10
-      b2 = intToBoxInt (-10)
-      sumB = boxAdd b1 b2
+  let b1 = intToMultisetBoxInt 10
+      b2 = intToMultisetBoxInt (-10)
+      sumB = b1 <+> b2
   in normalizeBoxInt sumB == ZeroM
 
 public export
@@ -42,7 +43,7 @@ auditBoxIntRingHomomorphismProof =
       c = intToBoxInt 7
       left = boxAdd a (boxAdd b c)
       right = boxAdd (boxAdd a b) c
-  in normalizeBoxInt left == normalizeBoxInt right
+  in left == right
 
 public export
 %macro

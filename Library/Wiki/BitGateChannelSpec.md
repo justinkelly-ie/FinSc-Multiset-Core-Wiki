@@ -3,13 +3,14 @@
 Documents and verifies discrete $\mathbb{F}_2$ **Field Homomorphisms** into $(\mathbb{Z}_2, +_2, \cdot_2)$, box conversion channels, bit normalization, and linear `Bit` resource comonoid channels using QuickCheck property testing.
 
 ```idris
-module BitGateChannelSpec
+module Wiki.BitGateChannelSpec
 
 import Math.Singleton.Bit
+import Core.BoxInt
 import Math.BoxInt
 import Math.Interfaces
 import Data.Linear
-import Generators
+import Wiki.Generators
 
 %default total
 

@@ -12,10 +12,10 @@ A multiset `Box tok` over token domain `tok` forms a free commutative monoid $(M
 4. **Commutativity & Associativity**: $m_1 + m_2 = m_2 + m_1$ and $(m_1 + m_2) + m_3 = m_1 + (m_2 + m_3)$
 
 ```idris
-module MultisetAlgebraSpec
+module Wiki.MultisetAlgebraSpec
 
 import Math.Multiset
-import Generators
+import Wiki.Generators
 
 %default total
 

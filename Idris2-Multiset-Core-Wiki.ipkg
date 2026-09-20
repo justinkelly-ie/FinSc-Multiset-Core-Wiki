@@ -4,19 +4,20 @@ authors = "Justin Kelly"
 brief   = "Verification executable for Layer 0 Ground Linear QTT Multiset Memory Kernel."
 opts    = "--codegen chez"
 
-depends = base, linear, idris2-QuickCheck, Idris2-Multiset-Core
+depends = Idris2-Multiset-Core, Idris2-Multiset-Transform, base, idris2-QuickCheck, linear
+sourcedir = "Library"
 
-modules = Generators
-        , CoreMacroAudit
-        , ScaleTransformSpec
-        , MultisetAlgebraSpec
-        , BoxIntAlgebraSpec
-        , BitGateChannelSpec
-        , LinearResourceChannelSpec
-        , DependentMultisetSpec
-        , Main
+modules = Wiki.BitGateChannelSpec,
+          Wiki.BoxIntAlgebraSpec,
+          Wiki.CoreMacroAudit,
+          Wiki.DependentMultisetSpec,
+          Wiki.FusedStreamAlgebraSpec,
+          Wiki.Generators,
+          Wiki.LinearResourceChannelSpec,
+          Wiki.Main,
+          Wiki.MonoidApplicativeAdjunctionSpec,
+          Wiki.MultisetAlgebraSpec,
+          Wiki.ScaleTransformSpec
 
-main    = Main
+main = Wiki.Main
 executable = multiset-core-wiki
-
-sourcedir = "Library/Wiki"

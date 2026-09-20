@@ -3,11 +3,11 @@
 Documents and verifies compile-time type-indexed multisets (`DepMultiset`), freezing runtime conversions, **Functorial Homomorphisms** (`freezeDep(depMap f m) == mapMultiset f (freezeDep m)`), dependent folds, and non-empty `DepMultiset1` guarantees using QuickCheck property testing.
 
 ```idris
-module DependentMultisetSpec
+module Wiki.DependentMultisetSpec
 
 import Math.DepMultiset
 import Math.Multiset
-import Generators
+import Wiki.Generators
 
 %default total
 

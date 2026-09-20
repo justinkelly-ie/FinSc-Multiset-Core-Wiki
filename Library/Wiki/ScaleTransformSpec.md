@@ -12,11 +12,11 @@ A scale transformation $\mathbf{T} : M(A) \to M(B)$ preserves the multiset struc
 4. **Galois Adjunction Duality**: $\mathbf{T}^{-1}(\mathbf{T}(m)) = m$
 
 ```idris
-module ScaleTransformSpec
+module Wiki.ScaleTransformSpec
 
 import Core.ScaleTransform
 import Math.BoxInt
-import Generators
+import Wiki.Generators
 
 %default total
 

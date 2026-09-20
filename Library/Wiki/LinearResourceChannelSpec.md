@@ -3,12 +3,12 @@
 Documents and verifies `LEq` linear equality protocols, linear resource duplication comonoids, unboxing passband channels (`lunboxLMultiset`), linear folds, and in-place linear maps using QuickCheck property testing.
 
 ```idris
-module LinearResourceChannelSpec
+module Wiki.LinearResourceChannelSpec
 
 import Math.LMultiset
 import Math.Interfaces
 import Data.Linear
-import Generators
+import Wiki.Generators
 
 %default total
 

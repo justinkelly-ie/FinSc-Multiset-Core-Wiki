@@ -1,16 +1,19 @@
-module Main
+module Wiki.Main
 
 import Math.Interfaces
 import Math.Multiset
 import Math.BoxInt
 import Math.Singleton.Bit
-import CoreMacroAudit
-import ScaleTransformSpec
-import MultisetAlgebraSpec
-import BoxIntAlgebraSpec
-import BitGateChannelSpec
-import LinearResourceChannelSpec
-import DependentMultisetSpec
+import Wiki.CoreMacroAudit
+import Wiki.ScaleTransformSpec
+import Wiki.MultisetAlgebraSpec
+import Wiki.BoxIntAlgebraSpec
+import Wiki.BitGateChannelSpec
+import Wiki.LinearResourceChannelSpec
+import Wiki.DependentMultisetSpec
+import Wiki.MonoidApplicativeAdjunctionSpec
+import Wiki.FusedStreamAlgebraSpec
+import Core.TypeTheory.TwoLevel
 import System
 
 %default total
@@ -24,9 +27,9 @@ printTestResult name pass =
 ||| Audit 1: BoxInt Dirac Cancellation
 auditDiracCancellation : Bool
 auditDiracCancellation =
-  let b1 = intToBoxInt 5
-      b2 = intToBoxInt (-5)
-      sumB = boxAdd b1 b2
+  let b1 = intToMultisetBoxInt 5
+      b2 = intToMultisetBoxInt (-5)
+      sumB = b1 <+> b2
   in normalizeBoxInt sumB == ZeroM
 
 ||| Audit 2: Bit Algebra Complement
@@ -40,6 +43,7 @@ auditLinearNat =
   let (n1 # n2) = lcomultNat 10
   in (lconsumeNat n1 == ()) && (lconsumeNat n2 == ())
 
+covering
 main : IO ()
 main = do
   putStrLn "========================================================"
@@ -54,6 +58,9 @@ main = do
   putStrLn "--------------------------------------------------------"
   putStrLn "  ⚡ IDRIS2-QUICKCHECK GENERATIVE PROPERTY SUITES ⚡  "
   putStrLn "--------------------------------------------------------"
+
+  p0 <- auditFusedStreamAlgebraProof
+  printTestResult "FusedStream Deforestation & Ternary Compression 378/729 (QuickCheck)" p0
 
   p1 <- auditScaleTransformProof
   printTestResult "ScaleTransform Functorial Identity & Composition (QuickCheck)" p1
@@ -73,6 +80,13 @@ main = do
   p6 <- auditDependentMultisetProof
   printTestResult "Dependent DepMultiset Freeze & DepMultiset1 (QuickCheck)" p6
 
+  p7 <- auditMonoidApplicativeGaloisProof
+  printTestResult "Monoid Applicative Monad, Ring Convolution & Galois (QuickCheck)" p7
+
+  let p8 = Core.TypeTheory.TwoLevel.auditTwoLevelTypeTheoryProof
+  printTestResult "Two-Level Type Theory (2LTT) Subfibration Stratification" p8
+
   putStrLn "========================================================"
   putStrLn "  ✨ ALL MULTISET0 KERNEL WITNESSES PASSED ✨  "
   putStrLn "========================================================"
+

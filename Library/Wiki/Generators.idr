@@ -1,7 +1,8 @@
-module Generators
+module Wiki.Generators
 
 import public QuickCheck
 import Math.Interfaces
+import Core.BoxInt
 import Math.BoxInt
 import Math.Singleton.Bit
 import Math.Multiset
@@ -10,7 +11,12 @@ import Math.Multiset
 
 public export
 Arbitrary BoxInt where
-  arbitrary = map intToBoxInt arbitrary
+  arbitrary = map MkBoxInt arbitrary
+  coarbitrary b gen = coarbitrary (unwrapBox b) gen
+
+public export
+Arbitrary MultisetBoxInt where
+  arbitrary = map intToMultisetBoxInt arbitrary
   coarbitrary b gen =
     let (MkUr n) = boxToInt b
     in coarbitrary n gen

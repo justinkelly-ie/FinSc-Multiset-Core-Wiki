@@ -12,57 +12,58 @@ Documents and verifies discrete `BoxInt` **Ring Homomorphisms** $\phi : (\text{B
 4. **Monomorphic 2D Matrix Trace Homomorphism**: $\text{traceBoxMatrix2D}(A + B) = \text{traceBoxMatrix2D}(A) + \text{traceBoxMatrix2D}(B)$
 
 ```idris
-module BoxIntAlgebraSpec
+module Wiki.BoxIntAlgebraSpec
 
+import Core.BoxInt
 import Math.BoxInt
 import Math.Interfaces
 import Data.Linear
-import Generators
+import Wiki.Generators
 
 %default total
 
-||| Homomorphic Law 1: boxToInt is a Ring Homomorphism from (BoxInt, +, *) to (Z, +, *)
+||| Homomorphic Law 1: boxToInt is a Ring Homomorphism from (MultisetBoxInt, +, *) to (Z, +, *)
 ||| boxToInt(x + y) == boxToInt(x) + boxToInt(y)
 ||| boxToInt(x * y) == boxToInt(x) * boxToInt(y)
 public export
-prop_boxRingHomomorphism : BoxInt -> BoxInt -> Bool
+prop_boxRingHomomorphism : MultisetBoxInt -> MultisetBoxInt -> Bool
 prop_boxRingHomomorphism bx by =
   let (MkUr x) = boxToInt bx
       (MkUr y) = boxToInt by
-      (MkUr addObs) = boxToInt (boxAdd bx by)
-      (MkUr multObs) = boxToInt (boxMult bx by)
+      (MkUr addObs) = boxToInt (normalizeBoxInt (bx <+> by))
+      (MkUr multObs) = boxToInt (multisetBoxMult bx by)
   in (addObs == x + y) && (multObs == x * y)
 
 ||| Algebraic Law 2: Addition Commutativity and Associativity
 public export
-prop_boxAddRingLaws : BoxInt -> BoxInt -> BoxInt -> Bool
+prop_boxAddRingLaws : MultisetBoxInt -> MultisetBoxInt -> MultisetBoxInt -> Bool
 prop_boxAddRingLaws x y z =
-  let comm = (x + y == y + x)
-      assoc = ((x + y) + z == x + (y + z))
-      zeroId = (x + ZeroM == x) && (ZeroM + x == x)
+  let comm = (x <+> y == y <+> x)
+      assoc = ((x <+> y) <+> z == x <+> (y <+> z))
+      zeroId = (x <+> ZeroM == x) && (ZeroM <+> x == x)
   in comm && assoc && zeroId
 
 ||| Algebraic Law 3: Multiplication Commutativity, Associativity, and Distributivity
 public export
-prop_boxMultRingLaws : BoxInt -> BoxInt -> BoxInt -> Bool
+prop_boxMultRingLaws : MultisetBoxInt -> MultisetBoxInt -> MultisetBoxInt -> Bool
 prop_boxMultRingLaws x y z =
-  let comm = (x * y == y * x)
-      assoc = ((x * y) * z == x * (y * z))
-      distr = (x * (y + z) == (x * y) + (x * z))
+  let comm = (multisetBoxMult x y == multisetBoxMult y x)
+      assoc = (multisetBoxMult (multisetBoxMult x y) z == multisetBoxMult x (multisetBoxMult y z))
+      distr = (multisetBoxMult x (y <+> z) == normalizeBoxInt ((multisetBoxMult x y) <+> (multisetBoxMult x z)))
   in comm && assoc && distr
 
 ||| Algebraic Law 4: Additive Inverse (Dirac Zero Annihilation)
 public export
-prop_boxAdditiveInverse : BoxInt -> Bool
+prop_boxAdditiveInverse : MultisetBoxInt -> Bool
 prop_boxAdditiveInverse x =
-  (x + (-x) == ZeroM) && ((-x) + x == ZeroM)
+  (normalizeBoxInt (x <+> (boxNegate x)) == ZeroM) && (normalizeBoxInt ((boxNegate x) <+> x) == ZeroM)
 
 ||| Property 5: Absolute Value Metric Law
 public export
 prop_boxAbsMetric : Integer -> Bool
 prop_boxAbsMetric x =
   let bx = intToBoxInt x
-  in boxAbs bx == intToBoxInt (abs x)
+  in absBox bx == intToBoxInt (abs x)
 
 ||| Property 6: NonZeroBoxInt Type Refinement Filter
 public export
@@ -75,7 +76,7 @@ prop_nonZeroRefinementFilter x =
 
 ||| Property 7: LEq BoxInt Channel Equality Reflexivity
 public export
-prop_lEqBoxIntChannel : BoxInt -> Bool
+prop_lEqBoxIntChannel : MultisetBoxInt -> Bool
 prop_lEqBoxIntChannel bx =
   let Builtin.(#) match (Builtin.(#) _ _) = lEq bx bx
   in match
