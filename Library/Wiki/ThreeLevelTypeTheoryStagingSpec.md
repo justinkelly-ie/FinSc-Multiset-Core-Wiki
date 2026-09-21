@@ -2,6 +2,8 @@
 
 Documents and verifies the formal application of **Three-Level Type Theory (3LTT) Inter-Cycle Staging** within the `FinSc-Multiset-Core` kernel and `FinSc-Epoch` multi-universe engine.
 
+> 🔗 **Related Specification**: See [TwoLevelTypeTheoryStagingSpec.md](file:///var/home/justin/Projects/FinSc-Multiset-Core-Wiki/Library/Wiki/TwoLevelTypeTheoryStagingSpec.md) ([TwoLevelTypeTheoryStagingSpec.md](TwoLevelTypeTheoryStagingSpec.md)) for 2-stage compilation, QTT 0 erasure, and subfibration reflection functors.
+
 > [!NOTE]
 > ### ⚛️ Why a Physicist Cares About 3LTT Inter-Cycle Staging
 > 

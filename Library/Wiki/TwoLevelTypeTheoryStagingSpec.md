@@ -2,6 +2,8 @@
 
 Documents and verifies the formal application of **Two-Level Type Theory (2LTT) Staged Compilation** (Kovács 2022, [arXiv:2209.09729v1](https://arxiv.org/abs/2209.09729v1)) within the `FinSc-Multiset-Core` kernel.
 
+> 🔗 **Related Specification**: See [ThreeLevelTypeTheoryStagingSpec.md](file:///var/home/justin/Projects/FinSc-Multiset-Core-Wiki/Library/Wiki/ThreeLevelTypeTheoryStagingSpec.md) ([ThreeLevelTypeTheoryStagingSpec.md](ThreeLevelTypeTheoryStagingSpec.md)) for 3-tier inter-universe cycle staging ($U=1 \dots 37$).
+
 > [!NOTE]
 > ### ⚛️ Why a Physicist Cares About 2LTT Staged Compilation
 > 
