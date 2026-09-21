@@ -14,6 +14,10 @@ import Wiki.DependentMultisetSpec
 import Wiki.MonoidApplicativeAdjunctionSpec
 import Wiki.FusedStreamAlgebraSpec
 import Wiki.TwoLevelTypeTheoryStagingSpec
+import Wiki.BoxelStagingSpec
+import Wiki.VexelStagingSpec
+import Wiki.MaxelStagingSpec
+import Wiki.SpreadStreamStagingSpec
 import Core.TypeTheory.TwoLevel
 import System
 
@@ -86,6 +90,18 @@ main = do
 
   p8Staging <- auditTwoLevelTypeTheoryStagingProof
   printTestResult "Two-Level Type Theory (2LTT) Staged Compilation (Kovács 2022)" p8Staging
+
+  pBoxel <- auditBoxelStagingProof
+  printTestResult "1D Boxel & BoxInt Additive Cancellation 2LTT Staging" pBoxel
+
+  pVexel <- auditVexelStagingProof
+  printTestResult "1D Vexel & Unixel Spatial Stencil 2LTT Staging" pVexel
+
+  pMaxel <- auditMaxelStagingProof
+  printTestResult "2D Maxel Matrix Tensor & Product Cancellation 2LTT Staging" pMaxel
+
+  pSpread <- auditSpreadStreamStagingProof
+  printTestResult "Coinductive Spread Stream Deforestation 2LTT Staging" pSpread
 
   let p8 = Core.TypeTheory.TwoLevel.auditTwoLevelTypeTheoryProof
   printTestResult "Two-Level Type Theory (2LTT) Subfibration Stratification" p8
