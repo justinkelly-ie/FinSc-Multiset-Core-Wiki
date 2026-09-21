@@ -14,18 +14,22 @@ Documents and verifies the formal application of **Two-Level Type Theory (2LTT) 
 1. **Stage 1 ($\mathcal{U}_1$) Meta-Level / Compile-Time Stage**:
    Represented by `StrictLevel a`. Meta-level computations are deforested, zero-heap, $O(1)$ stack operations operating under strict judgmental equality ($\equiv$). Under Kovács's *staging-by-evaluation*, all $\mathcal{U}_1$ terms and type formers are guaranteed to be evaluated away at compile time.
    > **Multiset Perspective**: Stage 1 is **symbolic multiset algebra and count manipulation** (e.g. deforesting multiset streams or simplifying exponent counts $x^5 \cdot x^{-5} \to x^0$ at compile time before any physical state is created).
+   > **Physics Perspective**: Stage 1 represents **mathematical calculation, gauge choices, and coordinate accounting**—the unobservable theoretical framework that evaluates away before physical manifestation.
 
 2. **Stage 0 ($\mathcal{U}_0$) Object-Level / Runtime Stage**:
    Represented by `HomotopyLevel a`. Object-level types represent synthetic physical manifolds, 4Geometries metric spaces, and weak identity paths ($x = y$) operating under univalence and 2-category adjunctions.
    > **Multiset Perspective**: Stage 0 is the **physical payload populated by discrete multiset state vectors** (baryons, dark energy boxels, dark matter laws, and 5x5 substrate metric tensors) that exist at runtime and evolve across cosmic epochs.
+   > **Physics Perspective**: Stage 0 represents **physical reality and observable state**—the actual mass payload, dark energy boxels, metric tensors $g_{ij}$, and spacetime curvature fields that exist and evolve across cosmic epochs.
 
 3. **Subfibration Reflection Functor ($L \dashv R$)**:
    The canonical 2LTT subfibration adjunction $\mathrm{Hom}_{\mathrm{Homotopy}}(L a, b) \cong \mathrm{Hom}_{\mathrm{Strict}}(a, R b)$ maps outer deforested strict streams into inner physical manifold states.
    > **Multiset Perspective**: This is the **transduction bridge** that takes symbolic multiset stream steps evaluated at Stage 1 and reflects them directly into physical multiset state updates at Stage 0 with zero runtime overhead.
+   > **Physics Perspective**: This is **the measurement transduction boundary** that maps mathematical state changes calculated in the observer frame (Stage 1) into real physical state updates on the manifold (Stage 0).
 
 4. **Zero-Cost QTT Quantity 0 Erasure**:
    Quantitative Type Theory (QTT) quantity `0` annotations (`0 p : Path x y`, `0 s : StrictLevel Nat`) enforce Kovács's Stage 1 erasure guarantees in Idris 2, ensuring $100\%$ compile-time proof erasure with zero runtime heap allocation.
    > **Multiset Perspective**: This is **erasing the multiset accounting ledger after verifying mass conservation**—the compiler proves that multiset conservation laws ($a + (-a) = 0$) hold definitionally, but completely erases the proof accounting so runtime execution incurs zero memory allocation.
+   > **Physics Perspective**: This is **conservation law verification without physical overhead**—proving exact mass, charge, and energy conservation behind the scenes without adding unphysical observer clutter to the universe payload.
 
 ```idris
 module Wiki.TwoLevelTypeTheoryStagingSpec
