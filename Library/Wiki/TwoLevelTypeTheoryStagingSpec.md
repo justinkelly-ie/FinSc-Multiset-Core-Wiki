@@ -11,7 +11,7 @@ Documents and verifies the formal application of **Two-Level Type Theory (2LTT) 
    Represented by `HomotopyLevel a`. Object-level types represent synthetic physical manifolds, 4Geometries metric spaces, and weak identity paths ($x = y$) operating under univalence and 2-category adjunctions.
 
 3. **Subfibration Reflection Functor ($L \dashv R$)**:
-   The canonical 2LTT subfibration adjunction $\text{Hom}_{\text{Homotopy}}(L a, b) \cong \text{Hom}_{\text{Strict}}(a, R b)$ maps outer deforested strict streams into inner physical manifold states.
+   The canonical 2LTT subfibration adjunction $\mathrm{Hom}_{\mathrm{Homotopy}}(L a, b) \cong \mathrm{Hom}_{\mathrm{Strict}}(a, R b)$ maps outer deforested strict streams into inner physical manifold states.
 
 4. **Zero-Cost QTT Quantity 0 Erasure**:
    Quantitative Type Theory (QTT) quantity `0` annotations (`0 p : Path x y`, `0 s : StrictLevel Nat`) enforce Kovács's Stage 1 erasure guarantees in Idris 2, ensuring $100\%$ compile-time proof erasure with zero runtime heap allocation.
