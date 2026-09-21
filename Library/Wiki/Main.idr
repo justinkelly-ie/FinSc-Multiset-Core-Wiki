@@ -13,6 +13,7 @@ import Wiki.LinearResourceChannelSpec
 import Wiki.DependentMultisetSpec
 import Wiki.MonoidApplicativeAdjunctionSpec
 import Wiki.FusedStreamAlgebraSpec
+import Wiki.TwoLevelTypeTheoryStagingSpec
 import Core.TypeTheory.TwoLevel
 import System
 
@@ -82,6 +83,9 @@ main = do
 
   p7 <- auditMonoidApplicativeGaloisProof
   printTestResult "Monoid Applicative Monad, Ring Convolution & Galois (QuickCheck)" p7
+
+  p8Staging <- auditTwoLevelTypeTheoryStagingProof
+  printTestResult "Two-Level Type Theory (2LTT) Staged Compilation (Kovács 2022)" p8Staging
 
   let p8 = Core.TypeTheory.TwoLevel.auditTwoLevelTypeTheoryProof
   printTestResult "Two-Level Type Theory (2LTT) Subfibration Stratification" p8

@@ -17,7 +17,8 @@ modules = Wiki.BitGateChannelSpec,
           Wiki.Main,
           Wiki.MonoidApplicativeAdjunctionSpec,
           Wiki.MultisetAlgebraSpec,
-          Wiki.ScaleTransformSpec
+          Wiki.ScaleTransformSpec,
+          Wiki.TwoLevelTypeTheoryStagingSpec
 
 main = Wiki.Main
 executable = multiset-core-wiki
