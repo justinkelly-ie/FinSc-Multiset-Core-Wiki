@@ -60,7 +60,11 @@
 | **2D Maxel Matrix** | `Wiki.MaxelStagingSpec` | `StrictLevel Maxel` $\to$ `HomotopyLevel Maxel` covalent bond field & 5x5 metric tensor. | **Product Tensor Cancellation**: $[1, 2] \times [3, 4] \to 0$; Grassmann wedge nilpotency $v \wedge v \to 0$. |
 | **SpreadStream** | `Wiki.SpreadStreamStagingSpec` | `StrictLevel GohMultiset` $\to$ `HomotopyLevel GohMultiset` 4Geometries sector classification. | **Zero-Heap Stream Deforestation**: Gauss totient sum identity $\sum_{d \vert 6} \phi(d) = 6$ via `Skip`/`Yield`. |
 
-### 8. `Library/Wiki/Main.idr`
+### 8. `Library/Wiki/ThreeLevelTypeTheoryStagingSpec.md`
+- **Algebra & Homomorphisms:** Formal application of Three-Level Type Theory (3LTT) Inter-Cycle Staging to multi-cyclic cosmological evolution (`HyperCycleLevel`, `ParameterizedCycleState u e a`).
+- **Verification:** Proof suites for Level 3 hyper-cycle macro-trajectories ($\mathcal{U}_2$), Level 2 compile-time deforestation ($\mathcal{U}_1$), Level 1 physical payload ($\mathcal{U}_0$), inter-cycle reflection functors ($H \dashv S$), and QTT quantity `0` proof erasure.
+
+### 9. `Library/Wiki/Main.idr`
 - **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 1.
 
 ---

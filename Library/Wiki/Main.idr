@@ -18,6 +18,7 @@ import Wiki.BoxelStagingSpec
 import Wiki.VexelStagingSpec
 import Wiki.MaxelStagingSpec
 import Wiki.SpreadStreamStagingSpec
+import Wiki.ThreeLevelTypeTheoryStagingSpec
 import Core.TypeTheory.TwoLevel
 import System
 
@@ -102,6 +103,9 @@ main = do
 
   pSpread <- auditSpreadStreamStagingProof
   printTestResult "Coinductive Spread Stream Deforestation 2LTT Staging" pSpread
+
+  p3LTT <- auditThreeLevelTypeTheoryStagingProof
+  printTestResult "Three-Level Type Theory (3LTT) Inter-Cycle Staging" p3LTT
 
   let p8 = Core.TypeTheory.TwoLevel.auditTwoLevelTypeTheoryProof
   printTestResult "Two-Level Type Theory (2LTT) Subfibration Stratification" p8
