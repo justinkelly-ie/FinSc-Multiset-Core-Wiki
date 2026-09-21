@@ -36,7 +36,7 @@
 ## 📚 Specification Chapters & Verification Modules
 
 ### 1. `Library/Wiki/BoxIntAlgebraSpec.md`
-- **Algebra & Homomorphisms:** Formal proof specifications for signed `BoxInt` arithmetic (`Pos`/`Neg` Dirac cancellation), monomorphic integer operations (`addBox`, `subBox`, `multBox`, `absBox`), and zero-defect integer bounds.
+- **Algebra & Homomorphisms:** Signed `BoxInt` arithmetic (`Pos`/`Neg` Dirac cancellation), monomorphic integer operations (`addBox`, `subBox`, `multBox`, `absBox`), and zero-defect integer bounds.
 - **Verification:** QuickCheck property tests validating associativity, identity, and monomorphic reduction invariants.
 
 ### 2. `Library/Wiki/MultisetAlgebraSpec.md`
@@ -52,14 +52,22 @@
 - **Verification:** Property tests verifying gate channel sound mapping and binary logic conservation.
 
 ### 5. `Library/Wiki/LinearResourceChannelSpec.md`
-- **Algebra & Homomorphisms:** QTT linear multiset resource channels (`LMultiset`, `LConsumable`, `LComonoid`).
+- **Algebra & Homomorphisms:** QTT linear multiset resource channels (`LMultiset`, `LConsumable`).
 - **Verification:** Compile-time proof witnesses guaranteeing strict linear resource consumption without illegal cloning or deletion.
 
 ### 6. `Library/Wiki/DependentMultisetSpec.md`
 - **Algebra & Homomorphisms:** Dependent multiset invariants and type-indexed multiset specifications (`DepMultiset`).
 - **Verification:** Invariant preservation proofs across dependent multiset transformations.
 
-### 7. `Library/Wiki/TwoLevelTypeTheoryStagingSpec.md` & 2LTT Multiset Type Matrix
+### 7. `Library/Wiki/FusedStreamAlgebraSpec.md`
+- **Algebra & Homomorphisms:** Coinductive stream deforestation (`GohMultiset`, `Skip`, `Yield`) and zero-heap stream hylomorphisms.
+- **Verification:** Proof witnesses for Gauss totient sum identity $\sum_{d \vert 6} \phi(d) = 6$ and deforested stream evaluation.
+
+### 8. `Library/Wiki/MonoidApplicativeAdjunctionSpec.md`
+- **Algebra & Homomorphisms:** Category-theoretic multiset adjunctions ($L \dashv R$) preserving exact hom-tensor equivalence (`MultisetTensor (L a) b ≅ MultisetTensor a (R b)`).
+- **Verification:** Hom-tensor isomorphism and monoid applicative adjunction proof witnesses.
+
+### 9. `Library/Wiki/TwoLevelTypeTheoryStagingSpec.md` & 2LTT Multiset Type Matrix
 - **Algebra & Homomorphisms:** Formal application of Two-Level Type Theory (2LTT) Staged Compilation ([Kovács 2022](https://arxiv.org/abs/2209.09729v1)) to discrete multiset types (`Boxel`, `Vexel`, `Maxel`, `SpreadStream`).
 - **Verification:** Proof suites for Stage 1 compile-time deforestation (`StrictLevel`), Stage 0 runtime physical payload (`HomotopyLevel`), QTT quantity `0` erasure, and product/additive cancellation laws.
 
@@ -72,22 +80,22 @@
 | **2D Maxel Matrix** | `Wiki.MaxelStagingSpec` | `StrictLevel Maxel` $\to$ `HomotopyLevel Maxel` covalent bond field & 5x5 metric tensor. | **Product Tensor Cancellation**: $[1, 2] \times [3, 4] \to 0$; Grassmann wedge nilpotency $v \wedge v \to 0$. |
 | **SpreadStream** | `Wiki.SpreadStreamStagingSpec` | `StrictLevel GohMultiset` $\to$ `HomotopyLevel GohMultiset` 4Geometries sector classification. | **Zero-Heap Stream Deforestation**: Gauss totient sum identity $\sum_{d \vert 6} \phi(d) = 6$ via `Skip`/`Yield`. |
 
-### 8. `Library/Wiki/ThreeLevelTypeTheoryStagingSpec.md`
+### 10. `Library/Wiki/ThreeLevelTypeTheoryStagingSpec.md`
 - **Algebra & Homomorphisms:** Formal application of Three-Level Type Theory (3LTT) Inter-Cycle Staging to multi-cyclic cosmological evolution (`HyperCycleLevel`, `ParameterizedCycleState u e a`).
 - **Verification:** Proof suites for Level 3 hyper-cycle macro-trajectories ($\mathcal{U}_2$), Level 2 compile-time deforestation ($\mathcal{U}_1$), Level 1 physical payload ($\mathcal{U}_0$), inter-cycle reflection functors ($H \dashv S$), and QTT quantity `0` proof erasure.
 
-### 9. `Library/Wiki/Main.idr`
+### 11. `Library/Wiki/Main.idr`
 - **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 1.
 
 ---
 
 ## 🚀 Verification & Build
 
-To compile the literate verification suite and execute the test runner binary:
+To compile the literate verification suite and execute the test runner binary inside `fedora-toolbox-44`:
 
 ```bash
-idris2 --build FinSc-Multiset-Core-Wiki.ipkg
-./build/exec/multiset-core-wiki
+toolbox run -c fedora-toolbox-44 /var/home/justin/.local/bin/idris2 --build FinSc-Multiset-Core-Wiki.ipkg
+toolbox run -c fedora-toolbox-44 ./build/exec/multiset-core-wiki
 ```
 
 ---
@@ -96,11 +104,11 @@ idris2 --build FinSc-Multiset-Core-Wiki.ipkg
 
 1. **`FinSc-Multiset-Core` / `FinSc-Multiset-Core-Wiki`** (Layer 1: Flat Primitives & Box Monoids)
 2. **`FinSc-Multiset-Transform` / `FinSc-Multiset-Transform-Wiki`** (Layer 2: Fields & Scale Functors)
-3. **`FinSc-Multiset-Binary` / `FinSc-Multiset-Binary-Wiki`** (Layer 2b: Boolean Field Engines)
-4. **`FinSc-Multiset-Ternary` / `FinSc-Multiset-Ternary-Wiki`** (Layer 2c: Balanced Ternary Sifting)
-5. **`FinSc-Geometry` / `FinSc-Geometry-Wiki`** (Layer 3: Emergent Metric Geometry)
-6. **`FinSc-Physics` / `FinSc-Physics-Wiki`** (Layer 3b/6: Physical Conservation Laws)
-7. **`FinSc-Hadron` / `FinSc-Hadron-Wiki`** (Layer 4b: Standard Model Confinement)
-8. **`FinSc-Chemistry` / `FinSc-Chemistry-Wiki`** (Layer 5b: Molecular Kinetics)
-9. **`FinSc-Biology` / `FinSc-Biology-Wiki`** (Layer 6: Biological Hierarchies & Active Inference)
-10. **`FinSc-Universe` / `FinSc-Universe-Wiki`** (Layer 10: Cosmic Motive & Master Audit)
+3. **`FinSc-Multiset-Ternary` / `FinSc-Multiset-Ternary-Wiki`** (Layer 3: Balanced Ternary Sifting)
+4. **`FinSc-Dihedron` / `FinSc-Dihedron-Wiki`** (Layer 4: Dihedral Group & Chromogeometric Rotations)
+5. **`FinSc-Geometry` / `FinSc-Geometry-Wiki`** (Layer 5: Emergent Metric Geometry)
+6. **`FinSc-Topology` / `FinSc-Topology-Wiki`** (Layer 6: Discrete Cell Complexes & Homology)
+7. **`FinSc-Cellular` / `FinSc-Cellular-Wiki`** (Layer 7: Cellular Automata & Lattice Dynamics)
+8. **`FinSc-Thermodynamics` / `FinSc-Thermodynamics-Wiki`** (Layer 8: Pre-ordered Monoids & Free Energy)
+9. **`FinSc-Cosmology` / `FinSc-Cosmology-Wiki`** (Layer 9: Cosmic Scaling & 137 Scale Horizon)
+10. **`FinSc-Epoch` / `FinSc-Epoch-Wiki`** (Layer 10: 37-Epoch Cosmic Evolution & 3LTT Hyper-Cycle Engine)
