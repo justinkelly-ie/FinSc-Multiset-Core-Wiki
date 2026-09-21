@@ -35,7 +35,20 @@
 - **Algebra & Homomorphisms:** Dependent multiset invariants and type-indexed multiset specifications (`DepMultiset`).
 - **Verification:** Invariant preservation proofs across dependent multiset transformations.
 
-### 7. `Library/Wiki/Main.idr`
+### 7. `Library/Wiki/TwoLevelTypeTheoryStagingSpec.md` & 2LTT Multiset Type Matrix
+- **Algebra & Homomorphisms:** Formal application of Two-Level Type Theory (2LTT) Staged Compilation ([Kovács 2022](https://arxiv.org/abs/2209.09729v1)) to discrete multiset types (`Boxel`, `Vexel`, `Maxel`, `SpreadStream`).
+- **Verification:** Proof suites for Stage 1 compile-time deforestation (`StrictLevel`), Stage 0 runtime physical payload (`HomotopyLevel`), QTT quantity `0` erasure, and product/additive cancellation laws.
+
+#### 🗂️ 2LTT Multiset Type Staging Matrix
+
+| Multiset Type | Specification Module | 2LTT Staging Transfer ($\mathcal{U}_1 \to \mathcal{U}_0$) | Dominant Cancellation Law |
+| :--- | :--- | :--- | :--- |
+| **1D Boxel / BoxInt** | `Wiki.BoxelStagingSpec` | `StrictLevel (BoxInt)` $\to$ `HomotopyLevel (BoxInt)` mass capacity budget ($210$ closure). | **Additive Dirac Cancellation**: $+137 \oplus -137 = 0$. |
+| **1D Vexel / Unixel** | `Wiki.VexelStagingSpec` | `StrictLevel Vexel` $\to$ `HomotopyLevel Vexel` color charge payload ($R=[1], G=[2], B=[3]$). | **Zero-Pruning Passbands**: Duplicate merging and zero-weight entry elimination. |
+| **2D Maxel Matrix** | `Wiki.MaxelStagingSpec` | `StrictLevel Maxel` $\to$ `HomotopyLevel Maxel` covalent bond field & 5x5 metric tensor. | **Product Tensor Cancellation**: $[1, 2] \times [3, 4] \to 0$; Grassmann wedge nilpotency $v \wedge v \to 0$. |
+| **SpreadStream** | `Wiki.SpreadStreamStagingSpec` | `StrictLevel GohMultiset` $\to$ `HomotopyLevel GohMultiset` 4Geometries sector classification. | **Zero-Heap Stream Deforestation**: Gauss totient sum identity $\sum_{d \vert 6} \phi(d) = 6$ via `Skip`/`Yield`. |
+
+### 8. `Library/Wiki/Main.idr`
 - **Verification Runner:** Literate Idris 2 test runner executing compile-time `%macro` reflection proofs and QuickCheck property test suites for Layer 1.
 
 ---
