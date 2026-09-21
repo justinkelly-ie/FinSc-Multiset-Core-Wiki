@@ -2,6 +2,13 @@
 
 Documents and verifies the formal application of **Two-Level Type Theory (2LTT) Staged Compilation** (Kovács 2022, [arXiv:2209.09729v1](https://arxiv.org/abs/2209.09729v1)) within the `FinSc-Multiset-Core` kernel.
 
+> [!NOTE]
+> ### ⚛️ Why a Physicist Cares About 2LTT Staged Compilation
+> 
+> 1. **Separation of Observer Bookkeeping from Physical Reality**: Gauge choices, coordinate transformations, and intermediate normalization arithmetic are mathematical artifacts of the calculation apparatus—they are *not* physical observables. 2LTT guarantees that all mathematical coordinate transformations and conservation proofs happen at **Stage 1 ($\mathcal{U}_1$, Meta-Level)** and are **100% erased** at compile time. What manifests at **Stage 0 ($\mathcal{U}_0$, Object-Level)** is pure, un-polluted physical state payload (baryons, dark energy boxels, metric tensors $g_{ij}$, 4Geometries curvature fields).
+> 2. **Exact Conservation Laws Without Floating-Point Drift**: Symbolic discrete multiset algebra (rational trig spreads, exact prime factorizations $\Phi_k$, Dirac $+a \oplus -a = 0$ annihilation) is evaluated to exact normal form at compile time, guaranteeing zero numerical drift and exact mass conservation ($210$ Primorial closure).
+> 3. **Zero-Cost Abstractions for Multiscale Physics**: Category-theoretic abstractions (subfibration reflection functors $L \dashv R$, tensor pushforwards, deforested stream hylomorphisms) incur **zero runtime execution or memory overhead** ($O(1)$ stack, zero-heap execution).
+
 ## 1. Mathematical Foundation
 
 1. **Stage 1 ($\mathcal{U}_1$) Meta-Level / Compile-Time Stage**:
