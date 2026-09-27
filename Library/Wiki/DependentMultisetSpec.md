@@ -5,8 +5,8 @@ Documents and verifies compile-time type-indexed multisets (`DepMultiset`), free
 ```idris
 module Wiki.DependentMultisetSpec
 
-import Math.DepMultiset
-import Math.Multiset
+import Stage0.DepMultiset
+import Stage0.Multiset
 import Wiki.Generators
 
 %default total

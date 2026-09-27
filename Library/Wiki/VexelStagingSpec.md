@@ -21,9 +21,9 @@ Documents and verifies the formal application of **Two-Level Type Theory (2LTT) 
 ```idris
 module Wiki.VexelStagingSpec
 
-import Core.TypeTheory.TwoLevel
-import Core.VexelMaxel
-import Math.BoxInt
+import Stage1.TypeTheory.TwoLevel
+import Stage1.VexelMaxel
+import Stage0.BoxInt
 
 %default total
 

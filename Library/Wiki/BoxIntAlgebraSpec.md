@@ -14,49 +14,51 @@ Documents and verifies discrete `BoxInt` **Ring Homomorphisms** $\phi : (\text{B
 ```idris
 module Wiki.BoxIntAlgebraSpec
 
-import Core.BoxInt
-import Math.BoxInt
-import Math.Interfaces
+import Stage0.BoxInt
+import Stage0.BoxInt
+import Stage0.Interfaces
 import Data.Linear
 import Wiki.Generators
 
 %default total
 
-||| Homomorphic Law 1: boxToInt is a Ring Homomorphism from (MultisetBoxInt, +, *) to (Z, +, *)
+||| Homomorphic Law 1: boxToInt is a Ring Homomorphism from (BoxInt, +, *) to (Z, +, *)
 ||| boxToInt(x + y) == boxToInt(x) + boxToInt(y)
 ||| boxToInt(x * y) == boxToInt(x) * boxToInt(y)
 public export
-prop_boxRingHomomorphism : MultisetBoxInt -> MultisetBoxInt -> Bool
+prop_boxRingHomomorphism : BoxInt -> BoxInt -> Bool
 prop_boxRingHomomorphism bx by =
-  let (MkUr x) = boxToInt bx
-      (MkUr y) = boxToInt by
-      (MkUr addObs) = boxToInt (normalizeBoxInt (bx <+> by))
-      (MkUr multObs) = boxToInt (multisetBoxMult bx by)
+  let x = unwrapBox bx
+      y = unwrapBox by
+      addObs = unwrapBox (addBox bx by)
+      multObs = unwrapBox (mulBox bx by)
   in (addObs == x + y) && (multObs == x * y)
 
 ||| Algebraic Law 2: Addition Commutativity and Associativity
 public export
-prop_boxAddRingLaws : MultisetBoxInt -> MultisetBoxInt -> MultisetBoxInt -> Bool
+prop_boxAddRingLaws : BoxInt -> BoxInt -> BoxInt -> Bool
 prop_boxAddRingLaws x y z =
-  let comm = (x <+> y == y <+> x)
-      assoc = ((x <+> y) <+> z == x <+> (y <+> z))
-      zeroId = (x <+> ZeroM == x) && (ZeroM <+> x == x)
+  let zero = intToBoxInt 0
+      comm = (addBox x y == addBox y x)
+      assoc = (addBox (addBox x y) z == addBox x (addBox y z))
+      zeroId = (addBox x zero == x) && (addBox zero x == x)
   in comm && assoc && zeroId
 
 ||| Algebraic Law 3: Multiplication Commutativity, Associativity, and Distributivity
 public export
-prop_boxMultRingLaws : MultisetBoxInt -> MultisetBoxInt -> MultisetBoxInt -> Bool
+prop_boxMultRingLaws : BoxInt -> BoxInt -> BoxInt -> Bool
 prop_boxMultRingLaws x y z =
-  let comm = (multisetBoxMult x y == multisetBoxMult y x)
-      assoc = (multisetBoxMult (multisetBoxMult x y) z == multisetBoxMult x (multisetBoxMult y z))
-      distr = (multisetBoxMult x (y <+> z) == normalizeBoxInt ((multisetBoxMult x y) <+> (multisetBoxMult x z)))
+  let comm = (mulBox x y == mulBox y x)
+      assoc = (mulBox (mulBox x y) z == mulBox x (mulBox y z))
+      distr = (mulBox x (addBox y z) == addBox (mulBox x y) (mulBox x z))
   in comm && assoc && distr
 
 ||| Algebraic Law 4: Additive Inverse (Dirac Zero Annihilation)
 public export
-prop_boxAdditiveInverse : MultisetBoxInt -> Bool
+prop_boxAdditiveInverse : BoxInt -> Bool
 prop_boxAdditiveInverse x =
-  (normalizeBoxInt (x <+> (boxNegate x)) == ZeroM) && (normalizeBoxInt ((boxNegate x) <+> x) == ZeroM)
+  let zero = intToBoxInt 0
+  in (addBox x (negBox x) == zero) && (addBox (negBox x) x == zero)
 
 ||| Property 5: Absolute Value Metric Law
 public export
@@ -76,10 +78,8 @@ prop_nonZeroRefinementFilter x =
 
 ||| Property 7: LEq BoxInt Channel Equality Reflexivity
 public export
-prop_lEqBoxIntChannel : MultisetBoxInt -> Bool
-prop_lEqBoxIntChannel bx =
-  let Builtin.(#) match (Builtin.(#) _ _) = lEq bx bx
-  in match
+prop_lEqBoxIntChannel : BoxInt -> Bool
+prop_lEqBoxIntChannel bx = boxLTE bx bx
 
 ||| QuickCheck suite execution for BoxInt Algebra specification
 public export

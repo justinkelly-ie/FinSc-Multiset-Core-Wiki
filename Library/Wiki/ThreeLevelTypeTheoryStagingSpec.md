@@ -42,10 +42,10 @@ Documents and verifies the formal application of **Three-Level Type Theory (3LTT
 ```idris
 module Wiki.ThreeLevelTypeTheoryStagingSpec
 
-import Core.TypeTheory.TwoLevel
-import Core.TypeTheory.ThreeLevel
-import Math.Multiset
-import Math.BoxInt
+import Stage1.TypeTheory.TwoLevel
+import Stage2.ThreeLevel
+import Stage0.Multiset
+import Stage0.BoxInt
 import Data.Fuel
 
 %default total

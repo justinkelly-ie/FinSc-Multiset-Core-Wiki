@@ -18,9 +18,9 @@ Documents and verifies the formal application of **Two-Level Type Theory (2LTT) 
 ```idris
 module Wiki.BoxelStagingSpec
 
-import Core.TypeTheory.TwoLevel
-import Math.BoxInt
-import Math.Multiset
+import Stage1.TypeTheory.TwoLevel
+import Stage0.BoxInt
+import Stage0.Multiset
 
 %default total
 
@@ -28,20 +28,19 @@ import Math.Multiset
 public export
 prop_boxelAdditiveDiracCancellation : Bool
 prop_boxelAdditiveDiracCancellation =
-  let b1 = intToMultisetBoxInt 137
-      b2 = intToMultisetBoxInt (-137)
-      sumB = b1 <+> b2
-      norm = normalizeBoxInt sumB
-  in norm == ZeroM
+  let b1 = intToBoxInt 137
+      b2 = intToBoxInt (-137)
+      sumB = addBox b1 b2
+  in sumB == intToBoxInt 0
 
 ||| Property 2: 1D Boxel 2LTT Stage 1 to Stage 0 Transfer
 public export
 prop_boxelStage1ToStage0Staging : Bool
 prop_boxelStage1ToStage0Staging =
-  let strictBoxel = MkStrict (intToMultisetBoxInt 210)
+  let strictBoxel = MkStrict (intToBoxInt 210)
       homotopyBoxel = MkHomotopy (unwrapStrict strictBoxel)
-  in (unwrapStrict strictBoxel == intToMultisetBoxInt 210) &&
-     (unwrapHomotopy homotopyBoxel == intToMultisetBoxInt 210)
+  in (unwrapStrict strictBoxel == intToBoxInt 210) &&
+     (unwrapHomotopy homotopyBoxel == intToBoxInt 210)
 
 ||| Property 3: 1D Boxel Monoid Identity and Associativity Laws
 public export

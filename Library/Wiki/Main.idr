@@ -1,9 +1,9 @@
 module Wiki.Main
 
-import Math.Interfaces
-import Math.Multiset
-import Math.BoxInt
-import Math.Singleton.Bit
+import Stage0.Interfaces
+import Stage0.Multiset
+import Stage0.BoxInt
+import Stage0.Singleton.Bit
 import Wiki.CoreMacroAudit
 import Wiki.ScaleTransformSpec
 import Wiki.MultisetAlgebraSpec
@@ -19,7 +19,7 @@ import Wiki.VexelStagingSpec
 import Wiki.MaxelStagingSpec
 import Wiki.SpreadStreamStagingSpec
 import Wiki.ThreeLevelTypeTheoryStagingSpec
-import Core.TypeTheory.TwoLevel
+import Stage1.TypeTheory.TwoLevel
 import System
 
 %default total
@@ -33,10 +33,10 @@ printTestResult name pass =
 ||| Audit 1: BoxInt Dirac Cancellation
 auditDiracCancellation : Bool
 auditDiracCancellation =
-  let b1 = intToMultisetBoxInt 5
-      b2 = intToMultisetBoxInt (-5)
-      sumB = b1 <+> b2
-  in normalizeBoxInt sumB == ZeroM
+  let b1 = intToBoxInt 5
+      b2 = intToBoxInt (-5)
+      sumB = addBox b1 b2
+  in sumB == intToBoxInt 0
 
 ||| Audit 2: Bit Algebra Complement
 auditBitComplement : Bool
@@ -107,7 +107,7 @@ main = do
   p3LTT <- auditThreeLevelTypeTheoryStagingProof
   printTestResult "Three-Level Type Theory (3LTT) Inter-Cycle Staging" p3LTT
 
-  let p8 = Core.TypeTheory.TwoLevel.auditTwoLevelTypeTheoryProof
+  let p8 = Stage1.TypeTheory.TwoLevel.auditTwoLevelTypeTheoryProof
   printTestResult "Two-Level Type Theory (2LTT) Subfibration Stratification" p8
 
   putStrLn "========================================================"

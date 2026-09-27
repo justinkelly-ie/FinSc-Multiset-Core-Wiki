@@ -12,8 +12,8 @@ Documents and verifies discrete **FusedStream Maxel Operators**, zero-heap defor
 ```idris
 module Wiki.FusedStreamAlgebraSpec
 
-import Math.OnSeq.FusedStream
-import Math.OnSeq.FusedStreamBenchmark
+import Stage0.OnSeq.FusedStream
+import Stage0.OnSeq.FusedStreamBenchmark
 import Data.SortedMap
 import Data.Fuel
 import Wiki.Generators

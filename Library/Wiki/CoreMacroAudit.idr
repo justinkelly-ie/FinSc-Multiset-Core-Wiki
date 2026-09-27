@@ -1,8 +1,8 @@
 module Wiki.CoreMacroAudit
 
-import Core.BoxInt
-import Math.BoxInt
-import Math.Multiset
+import Stage0.BoxInt
+import Stage0.BoxInt
+import Stage0.Multiset
 import Language.Reflection
 
 %default total
@@ -25,10 +25,10 @@ auditCatalogWitnesses targets = auditWitness (allTrue targets)
 public export
 auditBoxIntDiracProof : Bool
 auditBoxIntDiracProof =
-  let b1 = intToMultisetBoxInt 10
-      b2 = intToMultisetBoxInt (-10)
-      sumB = b1 <+> b2
-  in normalizeBoxInt sumB == ZeroM
+  let b1 = intToBoxInt 10
+      b2 = intToBoxInt (-10)
+      sumB = addBox b1 b2
+  in sumB == intToBoxInt 0
 
 public export
 %macro

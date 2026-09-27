@@ -36,9 +36,9 @@ Documents and verifies the formal application of **Two-Level Type Theory (2LTT) 
 ```idris
 module Wiki.TwoLevelTypeTheoryStagingSpec
 
-import Core.TypeTheory.TwoLevel
-import Math.Multiset
-import Math.BoxInt
+import Stage1.TypeTheory.TwoLevel
+import Stage0.Multiset
+import Stage0.BoxInt
 
 %default total
 
@@ -79,11 +79,11 @@ prop_multisetPathReflection =
 public export
 prop_stagedBoxIntDiracCancellation : Bool
 prop_stagedBoxIntDiracCancellation =
-  let b1 = MkStrict (intToMultisetBoxInt 137)
-      b2 = MkStrict (intToMultisetBoxInt (-137))
-      sumB = intToMultisetBoxInt 137 <+> intToMultisetBoxInt (-137)
-      homotopySum = MkHomotopy (normalizeBoxInt sumB)
-  in (unwrapHomotopy homotopySum == ZeroM)
+  let b1 = MkStrict (intToBoxInt 137)
+      b2 = MkStrict (intToBoxInt (-137))
+      sumB = addBox (unwrapStrict b1) (unwrapStrict b2)
+      homotopySum = MkHomotopy sumB
+  in (unwrapHomotopy homotopySum == intToBoxInt 0)
 
 ||| Main Verification Suite for 2LTT Staged Compilation
 public export

@@ -21,11 +21,12 @@ Documents and verifies the formal application of **Two-Level Type Theory (2LTT) 
 ```idris
 module Wiki.SpreadStreamStagingSpec
 
-import Core.TypeTheory.TwoLevel
-import Core.Goh
-import Math.OnSeq.SpreadStream
-import Math.OnSeq.FusedStream
-import Core.BoxInt
+import Stage1.TypeTheory.TwoLevel
+import Stage1.Goh
+import Stage1.Math.OnSeq.SpreadStream
+
+import Stage0.OnSeq.FusedStream
+import Stage0.BoxInt
 
 %default total
 

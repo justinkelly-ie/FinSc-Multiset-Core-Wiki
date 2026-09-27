@@ -14,7 +14,7 @@ A multiset `Box tok` over token domain `tok` forms a free commutative monoid $(M
 ```idris
 module Wiki.MultisetAlgebraSpec
 
-import Math.Multiset
+import Stage0.Multiset
 import Wiki.Generators
 
 %default total

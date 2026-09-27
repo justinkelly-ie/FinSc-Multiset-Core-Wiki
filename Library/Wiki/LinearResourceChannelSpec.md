@@ -5,8 +5,8 @@ Documents and verifies `LEq` linear equality protocols, linear resource duplicat
 ```idris
 module Wiki.LinearResourceChannelSpec
 
-import Math.LMultiset
-import Math.Interfaces
+import Stage0.LMultiset
+import Stage0.Interfaces
 import Data.Linear
 import Wiki.Generators
 

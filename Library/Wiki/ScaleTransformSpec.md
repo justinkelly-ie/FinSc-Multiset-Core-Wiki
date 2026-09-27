@@ -14,8 +14,8 @@ A scale transformation $\mathbf{T} : M(A) \to M(B)$ preserves the multiset struc
 ```idris
 module Wiki.ScaleTransformSpec
 
-import Core.ScaleTransform
-import Math.BoxInt
+import Stage1.ScaleTransform
+import Stage0.BoxInt
 import Wiki.Generators
 
 %default total

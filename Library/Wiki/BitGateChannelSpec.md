@@ -5,10 +5,10 @@ Documents and verifies discrete $\mathbb{F}_2$ **Field Homomorphisms** into $(\m
 ```idris
 module Wiki.BitGateChannelSpec
 
-import Math.Singleton.Bit
-import Core.BoxInt
-import Math.BoxInt
-import Math.Interfaces
+import Stage0.Singleton.Bit
+import Stage0.BoxInt
+import Stage0.BoxInt
+import Stage0.Interfaces
 import Data.Linear
 import Wiki.Generators
 
