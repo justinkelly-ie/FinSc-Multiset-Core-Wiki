@@ -4,7 +4,7 @@ authors = "Justin Kelly"
 brief   = "Verification executable for Layer 0 Ground Linear QTT Multiset Memory Kernel."
 opts    = "--codegen chez"
 
-depends = FinSc-Multiset-Core, FinSc-Multiset-Transform, base, idris2-QuickCheck, linear
+depends = FinSc-Multiset, FinSc-Metric-Substrate, FinSc-Phase-Unfolding, base, idris2-QuickCheck, linear
 sourcedir = "Library"
 
 modules = Wiki.BitGateChannelSpec,
