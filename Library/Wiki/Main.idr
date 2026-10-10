@@ -49,7 +49,6 @@ auditLinearNat =
   let (n1 # n2) = lcomultNat 10
   in (lconsumeNat n1 == ()) && (lconsumeNat n2 == ())
 
-covering
 main : IO ()
 main = do
   putStrLn "========================================================"

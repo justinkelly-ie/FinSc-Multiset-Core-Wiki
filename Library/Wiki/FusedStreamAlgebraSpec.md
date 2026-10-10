@@ -21,7 +21,7 @@ import Wiki.Generators
 %default total
 
 ||| Property 1: Fused Stream Deforestation Associativity
-public export covering
+public export
 prop_fusedStreamAssociative : Bool
 prop_fusedStreamAssociative =
   let
@@ -31,8 +31,8 @@ prop_fusedStreamAssociative =
     s1 = stream [m1]
     s2 = stream [m2]
     s3 = stream [m3]
-    lhs = unstreamToMap (multiplyMaxels (multiplyMaxels s1 s2) s3)
-    rhs = unstreamToMap (multiplyMaxels s1 (multiplyMaxels s2 s3))
+    lhs = unstreamToMap substrateFuel (multiplyMaxels (multiplyMaxels s1 s2) s3)
+    rhs = unstreamToMap substrateFuel (multiplyMaxels s1 (multiplyMaxels s2 s3))
   in
     Data.SortedMap.toList lhs == Data.SortedMap.toList rhs
 
@@ -72,7 +72,7 @@ prop_fueledStreamEvaluation =
     resDry == [] && resLimit == [m1]
 
 ||| Property 6: Deforested Stream Fusion Combinator Suite
-public export covering
+public export
 prop_streamCombinatorSuite : Bool
 prop_streamCombinatorSuite =
   let
@@ -82,19 +82,19 @@ prop_streamCombinatorSuite =
     mapped = mapStream (\m => source m + target m) strm
     filtered = filterStream (\m => sector m == Elliptic) strm
     folded = foldStream (+) 0 mapped
-    resMapped = runFueledStream (limit 10) mapped
-    resFiltered = runFueledStream (limit 10) filtered
+    resMapped = runFueledStream substrateFuel mapped
+    resFiltered = runFueledStream substrateFuel filtered
   in
     resMapped == [3, 5] && resFiltered == [m1] && folded == 8
 
 ||| Property 7: Zero-Heap Deforested FusedStream Benchmark Equivalence (N = 1000)
-public export covering
+public export
 prop_pipelineDeforestationBenchmark : Bool
 prop_pipelineDeforestationBenchmark =
   verifyPipelineEquivalence 1000
 
 ||| Property 8: Stream Anamorphism & Hylomorphism Equivalence
-public export covering
+public export
 prop_unfoldAndHylomorphismEquivalence : Bool
 prop_unfoldAndHylomorphismEquivalence =
   let
@@ -103,26 +103,26 @@ prop_unfoldAndHylomorphismEquivalence =
     stepFunc [] = Done
     stepFunc (y :: ys) = Yield y ys
     unfolded = unfoldStream stepFunc xs
-    runRes = runFueledStream (limit 10) unfolded
-    hyloRes = fusedHylomorphism (limit 10) stepFunc (+) 0 xs
+    runRes = runFueledStream substrateFuel unfolded
+    hyloRes = fusedHylomorphism substrateFuel stepFunc (+) 0 xs
   in
     runRes == xs && hyloRes == 15
 
 ||| Property 9: Advanced Stream Combinators (Merge, Concat, Take, Drop)
-public export covering
+public export
 prop_fusedStreamMergeConcatWindowing : Bool
 prop_fusedStreamMergeConcatWindowing =
   let
     s1 = stream [1, 3, 5]
     s2 = stream [2, 4, 6]
     merged = fusedMergeSorted s1 s2
-    resMerged = runFueledStream (limit 100) merged
+    resMerged = runFueledStream substrateFuel merged
     taken = fusedTake 2 merged
-    resTaken = runFueledStream (limit 100) taken
+    resTaken = runFueledStream substrateFuel taken
     dropped = fusedDrop 4 merged
-    resDropped = runFueledStream (limit 100) dropped
+    resDropped = runFueledStream substrateFuel dropped
     concatenated = fusedConcat (stream [stream [1, 2], stream [3, 4]])
-    resConcat = runFueledStream (limit 100) concatenated
+    resConcat = runFueledStream substrateFuel concatenated
   in
     resMerged == [1, 2, 3, 4, 5, 6] &&
     resTaken == [1, 2] &&
@@ -131,7 +131,7 @@ prop_fusedStreamMergeConcatWindowing =
 
 
 ||| QuickCheck / Direct Suite Execution for Fused Stream Algebra
-public export covering
+public export
 auditFusedStreamAlgebraProof : IO Bool
 auditFusedStreamAlgebraProof = do
   let p1 = prop_fusedStreamAssociative
@@ -143,18 +143,6 @@ auditFusedStreamAlgebraProof = do
   let p7 = prop_pipelineDeforestationBenchmark
   let p8 = prop_unfoldAndHylomorphismEquivalence
   let p9 = prop_fusedStreamMergeConcatWindowing
-  let s1 = stream [1, 3, 5]
-  let s2 = stream [2, 4, 6]
-  let merged = fusedMergeSorted s1 s2
-  let resMerged = runFueledStream (limit 100) merged
-  let resTaken = runFueledStream (limit 100) (fusedTake 2 merged)
-  let resDropped = runFueledStream (limit 100) (fusedDrop 4 merged)
-  let resConcat = runFueledStream (limit 100) (fusedConcat (stream [stream [1, 2], stream [3, 4]]))
-  putStrLn $ "      resMerged: " ++ show resMerged
-  putStrLn $ "      resTaken: " ++ show resTaken
-  putStrLn $ "      resDropped: " ++ show resDropped
-  putStrLn $ "      resConcat: " ++ show resConcat
-  putStrLn $ "      p9: " ++ show p9
   pure (p1 && p2 && p3 && p4 && p5 && p6 && p7 && p8 && p9)
 
 

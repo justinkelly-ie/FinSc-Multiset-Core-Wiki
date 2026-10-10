@@ -54,17 +54,11 @@ record VerifiedAdjunctionChannel where
   rightHom : Nat
   0 equivalencePrf : HomTensorEquivalenceWitness leftHom rightHom
 
-||| $O(1)$ allocation deforested multiset adjunction stream transducer using fusedHylomorphism
-public export covering
+||| $O(1)$ allocation deforested multiset adjunction stream transducer using foldStreamNat
+public export
 fusedMultisetAdjunctionStream : Fuel -> List (Nat, Nat) -> Nat
 fusedMultisetAdjunctionStream f items =
-  fusedHylomorphism f
-    (\st => case st of
-              [] => Done
-              (l, r) :: rest => Yield (l + r) rest)
-    (\val, acc => val + acc)
-    0
-    items
+  foldStreamNat (length items) (\acc, (l, r) => acc + l + r) 0 (stream items)
 
 ||| Property 1: Multiset Applicative Identity Law (pure id <*> v == v)
 public export
